@@ -3,8 +3,6 @@
 import logging
 from octoprint.util.commandline import CommandLineCaller
 
-firmware = null
-
 def on_after_startup()
     caller.call("M115");
     logging.getLogger("octoprint.plugin." + __name__).info("sending m115")
