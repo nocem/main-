@@ -21,12 +21,13 @@ class Plugin(octoprint.plugin.EventHandlerPlugin):
     return line
   
   def gcode_que(comm_instance, phase, cmd, cmd_type, gcode, subcode=None, tags=None, *args, **kwargs):
-    if fwtype == 1 && gcode == "M110":
+    if fwtype == 1 && gcode.startswith("M110"):
       return "M110"
     
     return
 
-__plugin_name__ = "fwfix"
+__plugin_name__ = "Extended compatibility"
+__plugin_description__ = "This plugin adds extended compatibility(e.g. bugfixes) for ChiTu."
 __plugin_author__ = "nocem"
 __plugin_version__ = "0.1.0"
 __plugin_hooks__ = {
