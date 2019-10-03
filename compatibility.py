@@ -5,6 +5,7 @@ import octoprint.plugin
 
 caller = CommandLineCaller()
 fwtype = 0 #undefined
+ignoredErrors_1 = []  #TODO sd print finished error
 
 class Plugin(octoprint.plugin.EventHandlerPlugin):
   def on_event(event, payload):
@@ -25,13 +26,19 @@ class Plugin(octoprint.plugin.EventHandlerPlugin):
       return "M110"
     
     return
+  
+  def gcode_err(comm_instance, error_message, *args, **kwargs):
+    if fwtype == 1 && error_message.lower().contains(any(ignoredErrors_1)):
+      return True
+    
 
 __plugin_name__ = "Extended compatibility"
 __plugin_description__ = "This plugin adds extended compatibility(e.g. bugfixes) for ChiTu."
 __plugin_author__ = "nocem"
-__plugin_version__ = "0.1.0"
+__plugin_version__ = "0.0.5"
 __plugin_hooks__ = {
   "octoprint.comm.protocol.gcode.received": gcode_rec,
-  "octoprint.comm.protocol.gcode.queing": gcode_que
+  "octoprint.comm.protocol.gcode.queing": gcode_que,
+  "octoprint.comm.protocol.gcode.error": gcode_err
 }
 __plugin_implementation__ = Plugin()
