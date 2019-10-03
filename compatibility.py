@@ -25,9 +25,6 @@ class Plugin(octoprint.plugin.EventHandlerPlugin):
       return "M110"
     
     return
-      
-      
-
 
 __plugin_name__ = "fwfix"
 __plugin_author__ = "nocem"
